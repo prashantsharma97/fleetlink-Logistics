@@ -22,3 +22,26 @@ It implements the APIs described in the assignment: add vehicle, search availabl
    ```bash
    npm run seed
    ```
+
+---
+
+## 🔑 Default Credentials after cmd npm run seed
+- **Email:** `admin@gmail.com`  
+- **Password:** `123456`  
+
+Use these credentials to login as default admin.
+
+---
+
+## ⚡ Frontend Setup
+```bash
+# Go to Client folder
+
+# Install dependencies
+npm install
+
+# Run backend server
+npm run dev
+
+
+   
