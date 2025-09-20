@@ -9,8 +9,12 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const BookingList = () => {
+  const MySwal = withReactContent(Swal);
+
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
@@ -19,7 +23,7 @@ export const BookingList = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const id = "cust001"; 
+        const id = "cust001";
         const res = await Api.get(`/api/bookings-details?customerId=${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("fleetlink_token")}`,
@@ -38,6 +42,17 @@ export const BookingList = () => {
   }, []);
 
   const handleDelete = async (id) => {
+    const result = await MySwal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to cancel this booking?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, cancel it!',
+    });
+
+    if (!result.isConfirmed) return;
     setDeletingId(id);
     setMessage(null);
 
@@ -71,11 +86,10 @@ export const BookingList = () => {
 
       {message && (
         <div
-          className={`p-4 rounded-lg flex items-center ${
-            message.type === "success"
-              ? "bg-green-50 border border-green-200"
-              : "bg-red-50 border border-red-200"
-          }`}
+          className={`p-4 rounded-lg flex items-center ${message.type === "success"
+            ? "bg-green-50 border border-green-200"
+            : "bg-red-50 border border-red-200"
+            }`}
         >
           {message.type === "success" ? (
             <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
@@ -108,7 +122,7 @@ export const BookingList = () => {
             >
               <h3 className="font-semibold text-gray-900 flex items-center mb-3">
                 <Truck className="h-5 w-5 text-blue-600 mr-2" />
-                Vehicle: {booking.vehicleId?.name} (
+                Vehicle {booking.vehicleId?.name} (
                 {booking.vehicleId?.capacityKg} KG,{" "}
                 {booking.vehicleId?.tyres} tyres)
               </h3>
@@ -129,7 +143,7 @@ export const BookingList = () => {
                 </div>
                 <div className="flex items-center">
                   <Clock className="h-4 w-4 mr-2" />
-                  <span>Customer: {booking.customerId}</span>
+                  <span>Customer {booking.customerId}</span>
                 </div>
               </div>
 

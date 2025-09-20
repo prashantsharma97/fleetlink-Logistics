@@ -1,6 +1,6 @@
 const connectDB = require('../config/db');
 const Vehicle = require('../directory/models/Vehicle.model');
-const User = require('../models/User.model');
+const User = require('../directory/models/User.model');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
@@ -11,7 +11,8 @@ require('dotenv').config();
     await Vehicle.create([
       { name: 'Tata Abc', capacityKg: 1500, tyres: 4 },
       { name: 'Tata 407', capacityKg: 3500, tyres: 6 },
-      { name: 'Ashok Leyland', capacityKg: 5000, tyres: 6 }
+      { name: 'Ashok Leyland', capacityKg: 5000, tyres: 6 },
+      { name: 'Eicher E2', capacityKg: 5000, tyres: 6 },
     ]);
     console.log('Seeded vehicles');
 

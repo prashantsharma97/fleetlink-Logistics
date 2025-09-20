@@ -207,7 +207,6 @@ const SearchAndBook = () => {
         </div>
       )}
 
-      {/* Available Vehicles */}
       {availableVehicles.length > 0 && (
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">
@@ -253,7 +252,6 @@ const SearchAndBook = () => {
         </div>
       )}
 
-      {/* Booking Details */}
       {lastBooking && (
         <BookingDetails booking={lastBooking} />
       )}

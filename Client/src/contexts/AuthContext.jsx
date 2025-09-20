@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import Api from '../api/axios';
 
 const AuthContext = createContext(undefined);
@@ -29,7 +28,6 @@ export const AuthProvider = ({ children }) => {
   const login = async ({ email, password }) => {
     const res = await Api.post('/api/auth/login', { email, password });
     const { token } = res.data;
-
     if (!token) {
       throw new Error('Missing token in response');
     }
@@ -41,8 +39,6 @@ export const AuthProvider = ({ children }) => {
 
     return res.data;
   };
-
-
 
   const logout = () => {
     setUser(null);

@@ -5,8 +5,6 @@ const User = require('../models/User.model');
 const JWT_SECRET = process.env.JWT_SECRET || 'devsecret';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 
-// POST /api/auth/login
-
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
