@@ -40,7 +40,7 @@ Use these credentials to login as default admin.
 # Install dependencies
 npm install
 
-# Run backend server
+# Run frontend server
 npm run dev
 
 
